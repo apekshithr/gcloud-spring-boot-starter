@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.slf4j.Logger;
 
 /**
  * Created by renan on 27/05/17.
@@ -16,8 +17,9 @@ import java.util.List;
 @RequestMapping("/user")
 public class UserController {
 
+    private final static Logger logger = Logger.LoggerFactory(UserController.class); 
 
-    List<User> users = new ArrayList<>();
+    private List<User> users = new ArrayList<>();
 
     public UserController(){
         for (int i = 0; i < 10; i++) {
@@ -27,6 +29,7 @@ public class UserController {
 
     @RequestMapping(method = RequestMethod.GET)
     public List<User> findAll (){
+        logger.info("Getting {} Users", users.size());
         return this.users;
     }
 
